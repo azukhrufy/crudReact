@@ -5,6 +5,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Container } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
 
@@ -41,15 +42,19 @@ const columns = [
     formatter: (rowContent, row) => {
       return (
         <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <Link to={"edit/"+row.id}>
           <Button color="primary">
             <FontAwesomeIcon icon={faEdit} />
           </Button>
+          </Link>
           <Button color="danger">
             <FontAwesomeIcon icon={faTrash} />
           </Button>
+          <Link to={"detail/"+row.id}>
           <Button color="secondary">
             <FontAwesomeIcon icon={faInfo} />
           </Button>
+          </Link>
         </div>
       );
     },
