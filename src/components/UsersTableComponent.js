@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Container } from "reactstrap";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import paginationFactory from 'react-bootstrap-table2-paginator';
+
+const { SearchBar } = Search;
 
 const columns = [
   {
@@ -61,12 +65,24 @@ const defaultSorted = [
 export const UsersTableComponent = (props) => {
   return (
     <Container>
-      <BootstrapTable
+      <ToolkitProvider
         keyField="id"
         data={props.users}
         columns={columns}
         defaultSorted={defaultSorted}
-      />
+        search
+        
+      >
+        {(props) => (
+          <div>
+            <div className="float-right">
+            <SearchBar {...props.searchProps} placeholder="Search ..." />
+            </div>
+
+            <BootstrapTable {...props.baseProps} pagination={ paginationFactory() }/>
+          </div>
+        )}
+      </ToolkitProvider>
     </Container>
   );
 };

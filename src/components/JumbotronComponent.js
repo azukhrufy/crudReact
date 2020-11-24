@@ -1,7 +1,6 @@
 import React from "react";
 import { Jumbotron, Button, Container } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo } from "@fortawesome/free-solid-svg-icons";
+
 
 const JumbotronComponent = (props) => {
   return (
