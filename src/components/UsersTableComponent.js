@@ -4,7 +4,7 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Container } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
@@ -42,18 +42,18 @@ const columns = [
     formatter: (rowContent, row) => {
       return (
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <Link to={"edit/"+row.id}>
-          <Button color="primary">
-            <FontAwesomeIcon icon={faEdit} />
-          </Button>
+          <Link to={"edit/" + row.id}>
+            <Button color="primary">
+              <FontAwesomeIcon icon={faEdit} />
+            </Button>
           </Link>
           <Button color="danger">
             <FontAwesomeIcon icon={faTrash} />
           </Button>
-          <Link to={"detail/"+row.id}>
-          <Button color="secondary">
-            <FontAwesomeIcon icon={faInfo} />
-          </Button>
+          <Link to={"detail/" + row.id}>
+            <Button color="secondary">
+              <FontAwesomeIcon icon={faInfo} />
+            </Button>
           </Link>
         </div>
       );
@@ -76,15 +76,26 @@ export const UsersTableComponent = (props) => {
         columns={columns}
         defaultSorted={defaultSorted}
         search
-        
       >
         {(props) => (
           <div>
-            <div className="float-right">
-            <SearchBar {...props.searchProps} placeholder="Search ..." />
+            <div className="Row">
+              <div className="float-right">
+                <SearchBar {...props.searchProps} placeholder="Search ..." />
+              </div>
+              <div className="float-left">
+              <Link to={"create"}>
+                <Button>
+                  Create
+                </Button>
+              </Link>
+              </div>
             </div>
 
-            <BootstrapTable {...props.baseProps} pagination={ paginationFactory() }/>
+            <BootstrapTable
+              {...props.baseProps}
+              pagination={paginationFactory()}
+            />
           </div>
         )}
       </ToolkitProvider>

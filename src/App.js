@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter, Route} from "react-router-dom";
 import JumbotronComponent from "./components/JumbotronComponent";
 import NavbarComponent from "./components/NavbarComponent";
-import { UsersTableComponent } from "./components/UsersTableComponent";
 import HomeLayout from "./Layouts/HomeLayout";
 import CreateUserLayout from "./Layouts/CreateUserLayout";
 import EditUserLayout from "./Layouts/EditUserLayout";
