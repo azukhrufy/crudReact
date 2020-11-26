@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import { Container } from 'reactstrap'
+import BackButtonComponent from '../components/BackButtonComponent'
 
 export default class DetailUserLayout extends Component {
     render() {
         return (
             <div>
-                <p>Details User</p>
+                 <Container>
+                    <BackButtonComponent />
+                    <br />
+                    
+                </Container>
             </div>
         )
     }
