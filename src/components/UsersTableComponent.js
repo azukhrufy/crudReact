@@ -1,11 +1,12 @@
-import { faEdit, faInfo, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Container } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { faEdit, faInfo, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { SearchBar } = Search;
 
@@ -40,20 +41,21 @@ const columns = [
     text: "Actions",
     sort: false,
     formatter: (rowContent, row) => {
+      const params = row.id;
       return (
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <Link to={"edit/"+row.id}>
-          <Button color="primary">
-            <FontAwesomeIcon icon={faEdit} />
-          </Button>
+          <Link to={`edit/${params}`}>
+            <Button color="primary">
+              <FontAwesomeIcon icon={faEdit} />
+            </Button>
           </Link>
           <Button color="danger">
             <FontAwesomeIcon icon={faTrash} />
           </Button>
-          <Link to={"detail/"+row.id}>
-          <Button color="secondary">
-            <FontAwesomeIcon icon={faInfo} />
-          </Button>
+          <Link to={`detail/${params}`}>
+            <Button color="secondary">
+              <FontAwesomeIcon icon={faInfo} />
+            </Button>
           </Link>
         </div>
       );
@@ -67,7 +69,14 @@ const defaultSorted = [
     order: "desc",
   },
 ];
-export const UsersTableComponent = (props) => {
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.users
+  }
+}
+
+ const UsersTableComponent = (props) => {
   return (
     <Container>
       <ToolkitProvider
@@ -76,18 +85,31 @@ export const UsersTableComponent = (props) => {
         columns={columns}
         defaultSorted={defaultSorted}
         search
-        
       >
         {(props) => (
           <div>
-            <div className="float-right">
-            <SearchBar {...props.searchProps} placeholder="Search ..." />
+            <div className="Row">
+              <div className="float-right">
+                <SearchBar {...props.searchProps} placeholder="Search ..." />
+              </div>
+              <div className="float-left">
+              <Link to={"create"}>
+                <Button>
+                  Create
+                </Button>
+              </Link>
+              </div>
             </div>
 
-            <BootstrapTable {...props.baseProps} pagination={ paginationFactory() }/>
+            <BootstrapTable
+              {...props.baseProps}
+              pagination={paginationFactory()}
+            />
           </div>
         )}
       </ToolkitProvider>
     </Container>
   );
 };
+
+export default connect(mapStateToProps, null)(UsersTableComponent);
