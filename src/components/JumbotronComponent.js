@@ -2,13 +2,12 @@ import React from "react";
 import { Jumbotron, Button, Container } from "reactstrap";
 
 
-
 const JumbotronComponent = (props) => {
   return (
     <div>
       <Jumbotron>
         <Container>
-          <h1 className="display-3">React Native CRUD with Redux!</h1>
+          <h1 className="display-3">{props.title}!</h1>
           <p className="lead">
            This is a react js project website crud with redux
           </p>
