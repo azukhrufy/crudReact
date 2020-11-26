@@ -8,43 +8,17 @@ import EditUserLayout from "./Layouts/EditUserLayout";
 import DetailUserLayout from "./Layouts/DetailUserLayout";
 
 export default class App extends Component {
-  state = {
-    title: "React Crud with Redux",
-    users: [
-      {
-        id: 1,
-        name: "Moch Rizaldy",
-        address: "Bandung",
-        age: 21,
-        phone: "085777777777",
-      },
-      {
-        id: 2,
-        name: "Fitriana",
-        address: "Tangerang",
-        age: 20,
-        phone: "085888888888",
-      },
-      {
-        id: 3,
-        name: "Angung Junior",
-        address: "Bangka Belitung",
-        age: 22,
-        phone: "085666777888",
-      },
-    ],
-  };
-
+  
   render() {
-    const { title, users } = this.state;
+    
     return (
       <div>
         <NavbarComponent />
-        <JumbotronComponent title={title} />
+        <JumbotronComponent  />
        
         <BrowserRouter>
           <Route path="/" exact>
-            <HomeLayout users={users} />
+            <HomeLayout  />
           </Route>
           <Route path="/create" exact>
             <CreateUserLayout />
