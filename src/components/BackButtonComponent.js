@@ -10,7 +10,7 @@ const BackButtonComponent = () => {
       <Row>
         <Col>
           <Link to="/">
-            <Button style={{justifyContent:'space-between', width:'10%'}}>
+            <Button color="primary" style={{justifyContent:'space-between', width:'10%'}}>
               <span>
                 <FontAwesomeIcon icon={faChevronCircleLeft} style={{marginRight:'10%'}} />
               </span>
