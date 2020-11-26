@@ -1,5 +1,4 @@
-let initialState = {
-  users: [
+let usersTable =  [
     {
       id: 1,
       name: "Moch Rizaldy",
@@ -28,12 +27,9 @@ let initialState = {
         age: 21,
         phone: "085666777990",
       },
-  ],
-  error: false,
-  title: "React Crud with Redux",
-};
+  ];
 
-const users = (state = initialState, action) => {
+const users = (state = usersTable, action) => {
   return state;
 };
 

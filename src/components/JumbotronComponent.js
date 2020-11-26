@@ -1,19 +1,14 @@
 import React from "react";
 import { Jumbotron, Button, Container } from "reactstrap";
-import { connect } from 'react-redux';
 
 
-const mapStateToProps = (state) => {
-  return {
-    title: state.users.title
-  }
-}
+
 const JumbotronComponent = (props) => {
   return (
     <div>
       <Jumbotron>
         <Container>
-          <h1 className="display-3">{props.title}!</h1>
+          <h1 className="display-3">React Native CRUD with Redux!</h1>
           <p className="lead">
            This is a react js project website crud with redux
           </p>
@@ -33,4 +28,4 @@ const JumbotronComponent = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(JumbotronComponent);
+export default JumbotronComponent;

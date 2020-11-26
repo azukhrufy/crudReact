@@ -1,5 +1,3 @@
-import { faEdit, faInfo, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Container } from "reactstrap";
@@ -7,6 +5,8 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { faEdit, faInfo, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { SearchBar } = Search;
 
@@ -41,9 +41,10 @@ const columns = [
     text: "Actions",
     sort: false,
     formatter: (rowContent, row) => {
+      const params = row.id;
       return (
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <Link to={"edit/" + row.id}>
+          <Link to={`edit/${params}`}>
             <Button color="primary">
               <FontAwesomeIcon icon={faEdit} />
             </Button>
@@ -51,7 +52,7 @@ const columns = [
           <Button color="danger">
             <FontAwesomeIcon icon={faTrash} />
           </Button>
-          <Link to={"detail/" + row.id}>
+          <Link to={`detail/${params}`}>
             <Button color="secondary">
               <FontAwesomeIcon icon={faInfo} />
             </Button>
@@ -71,7 +72,7 @@ const defaultSorted = [
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users
+    users: state.users
   }
 }
 
