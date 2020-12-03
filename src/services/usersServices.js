@@ -4,6 +4,8 @@ export const GET_USERS_LIST = "GET_USERS_LIST";
 
 export const usersServices = () => {
     return dispatch => {
+
+        //get users data from api
         axios.get("https://my-json-server.typicode.com/azukhrufy/crudReactDB/users")
         .then(function(res){
             let result = res.data;
