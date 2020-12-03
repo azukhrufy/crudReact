@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import UsersTableComponent from "../components/UsersTableComponent";
+import { usersServices } from '../services/usersServices';
 
-export default class HomeLayout extends Component {
+class HomeLayout extends Component {
+    componentDidMount() {
+        this.props.dispatch(usersServices());
+    }
     render() {
         return (
             <div>
@@ -10,3 +15,6 @@ export default class HomeLayout extends Component {
         )
     }
 }
+
+
+export default connect()(HomeLayout)

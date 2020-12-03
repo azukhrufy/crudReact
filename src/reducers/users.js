@@ -1,36 +1,19 @@
-let usersTable =  [
-    {
-      id: 1,
-      name: "Moch Rizaldy",
-      address: "Bandung",
-      age: 21,
-      phone: "085777777777",
-    },
-    {
-      id: 2,
-      name: "Fitriana",
-      address: "Tangerang",
-      age: 20,
-      phone: "085888888888",
-    },
-    {
-      id: 3,
-      name: "Angung Junior",
-      address: "Bangka Belitung",
-      age: 22,
-      phone: "085666777888",
-    },
-    {
-        id: 4,
-        name: "Azukhrufy",
-        address: "Indramayu",
-        age: 21,
-        phone: "085666777990",
-      },
-  ];
+import {GET_USERS_LIST} from '../services/usersServices'
 
-const users = (state = usersTable, action) => {
-  return state;
+let usersTable =  {
+  getUsersList: false
+}
+
+const users = (state = usersTable, services) => {
+  switch (services.type) {
+    case GET_USERS_LIST:
+      return{
+        ...state,
+        getUsersList: services.payload.data,
+      };
+    default:
+      return state;
+  }
 };
 
 export default users;

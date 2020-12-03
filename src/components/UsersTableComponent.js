@@ -72,16 +72,17 @@ const defaultSorted = [
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users
+    getUsersList: state.users.getUsersList
   }
 }
 
  const UsersTableComponent = (props) => {
   return (
     <Container>
+      {props.getUsersList ? 
       <ToolkitProvider
         keyField="id"
-        data={props.users}
+        data={props.getUsersList}
         columns={columns}
         defaultSorted={defaultSorted}
         search
@@ -107,7 +108,7 @@ const mapStateToProps = (state) => {
             />
           </div>
         )}
-      </ToolkitProvider>
+      </ToolkitProvider> : null }
     </Container>
   );
 };
