@@ -1,8 +1,8 @@
 import {GET_USERS_LIST} from '../services/usersServices'
 
 let usersTable =  {
-  getUsersList: false,
-  getUsersListError: false
+  UsersList: false,
+  UsersListError: false
 }
 
 const users = (state = usersTable, services) => {
@@ -10,8 +10,8 @@ const users = (state = usersTable, services) => {
     case GET_USERS_LIST:
       return{
         ...state,
-        getUsersList: services.payload.data,
-        getUsersListError: services.payload.errorMessage,
+        UsersList: services.payload.data,
+        UsersListError: services.payload.errorMessage,
       };
     default:
       return state;

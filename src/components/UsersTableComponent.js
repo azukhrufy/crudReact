@@ -70,20 +70,22 @@ const defaultSorted = [
   },
 ];
 
+//menghubungkan table component dengan reducers/user.js
+// dikoneksikan melalui home layout yang "connect" dengan reducers/user.js
 const mapStateToProps = (state) => {
   return {
-    getUsersList: state.users.getUsersList,
-    getUsersListError: state.users.getUsersListError,
+    UsersList: state.users.UsersList,
+    UsersListError: state.users.UsersListError,
   };
 };
 
 const UsersTableComponent = (props) => {
   return (
     <Container>
-      {props.getUsersList ? (
+      {props.UsersList ? (
         <ToolkitProvider
           keyField="id"
-          data={props.getUsersList}
+          data={props.UsersList}
           columns={columns}
           defaultSorted={defaultSorted}
           search
@@ -110,8 +112,8 @@ const UsersTableComponent = (props) => {
         </ToolkitProvider>
       ) : (
         <div className="text-center">
-          {props.getUsersListError ? (
-            <h4>{props.getUsersListError}</h4>
+          {props.UsersListError ? (
+            <h4>{props.UsersListError}</h4>
           ) : (
             <Spinner color="dark" />
           )}
