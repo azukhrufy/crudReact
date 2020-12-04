@@ -73,6 +73,7 @@ const defaultSorted = [
 const mapStateToProps = (state) => {
   return {
     getUsersList: state.users.getUsersList,
+    getUsersListError: state.users.getUsersListError,
   };
 };
 
@@ -109,7 +110,11 @@ const UsersTableComponent = (props) => {
         </ToolkitProvider>
       ) : (
         <div className="text-center">
-        <Spinner color="dark" />
+          {props.getUsersListError ? (
+            <h4>{props.getUsersListError}</h4>
+          ) : (
+            <Spinner color="dark" />
+          )}
         </div>
       )}
     </Container>
