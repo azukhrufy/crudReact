@@ -1,6 +1,6 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { Button, Container } from "reactstrap";
+import { Button, Container, Spinner } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
@@ -70,44 +70,55 @@ const defaultSorted = [
   },
 ];
 
+//menghubungkan table component dengan reducers/user.js
+// dikoneksikan melalui home layout yang "connect" dengan reducers/user.js
 const mapStateToProps = (state) => {
   return {
-    users: state.users
-  }
-}
+    UsersList: state.users.UsersList,
+    UsersListError: state.users.UsersListError,
+  };
+};
 
- const UsersTableComponent = (props) => {
+const UsersTableComponent = (props) => {
   return (
     <Container>
-      <ToolkitProvider
-        keyField="id"
-        data={props.users}
-        columns={columns}
-        defaultSorted={defaultSorted}
-        search
-      >
-        {(props) => (
-          <div>
-            <div className="Row">
-              <div className="float-right">
-                <SearchBar {...props.searchProps} placeholder="Search ..." />
+      {props.UsersList ? (
+        <ToolkitProvider
+          keyField="id"
+          data={props.UsersList}
+          columns={columns}
+          defaultSorted={defaultSorted}
+          search
+        >
+          {(props) => (
+            <div>
+              <div className="Row">
+                <div className="float-right">
+                  <SearchBar {...props.searchProps} placeholder="Search ..." />
+                </div>
+                <div className="float-left">
+                  <Link to={"create"}>
+                    <Button>Create</Button>
+                  </Link>
+                </div>
               </div>
-              <div className="float-left">
-              <Link to={"create"}>
-                <Button>
-                  Create
-                </Button>
-              </Link>
-              </div>
-            </div>
 
-            <BootstrapTable
-              {...props.baseProps}
-              pagination={paginationFactory()}
-            />
-          </div>
-        )}
-      </ToolkitProvider>
+              <BootstrapTable
+                {...props.baseProps}
+                pagination={paginationFactory()}
+              />
+            </div>
+          )}
+        </ToolkitProvider>
+      ) : (
+        <div className="text-center">
+          {props.UsersListError ? (
+            <h4>{props.UsersListError}</h4>
+          ) : (
+            <Spinner color="dark" />
+          )}
+        </div>
+      )}
     </Container>
   );
 };
